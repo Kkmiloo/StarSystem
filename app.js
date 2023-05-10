@@ -12,7 +12,7 @@ const starSystem = new StarSystem(canvas, 0, 0);
 const btnAdd = document.querySelector("#addSun")
 const htmlPanel = document.getElementById("panel")
 
-const propertyPanel = document.getElementById("propertyPanel")
+const propertyPanel = document.getElementById("properties")
 
 const container = canvas.parentElement;
 canvas.width = container.clientWidth;
@@ -21,13 +21,13 @@ canvas.height = container.clientHeight;
 const system = { star: {}, planets: [] }
 const data = { id: 2, name: "hola", system: system }
 
-
+let sun;
 
 
 btnAdd.addEventListener('click', e => {
 
-    let sunInfo = { x: canvas.width / 2, y: canvas.height / 2, radius: 500, color: "yellow", distance: 0, angle: 0, speed: 0, id: window.crypto.randomUUID() }
-    let sun = new Sun(sunInfo);
+    let sunInfo = { x: canvas.width / 2, y: canvas.height / 2, radius: 100, color: "yellow", distance: 0, angle: 0, speed: 0, id: window.crypto.randomUUID() }
+    sun = new Sun(sunInfo);
     starSystem.addPlanet(sun);
     starSystem.animate();
 
@@ -35,6 +35,7 @@ btnAdd.addEventListener('click', e => {
     system.star.id = window.crypto.randomUUID();
     system.star = sunInfo
 
+    btnAdd.remove();
     const info = { ...sunInfo, name: "sun", id: system.star.id }
     updateLocalStorage();
     addToPanel(info, sun)
@@ -55,6 +56,11 @@ canvas.addEventListener('mousemove', function (e) {
     starSystem.handleMouseMove(e)
 });
 
+let zoomLevel = 1;
+
+
+
+
 
 
 function addToPanel(item, planet) {
@@ -63,18 +69,44 @@ function addToPanel(item, planet) {
     const div = document.createElement('div')
 
     const title = document.createElement('h4')
+    const btn = document.createElement('button');
+    btn.innerText = "+"
+    btn.classList.add('btn', "btn-primary")
+
+    btn.addEventListener('click', () => addPlanetToSun())
+    title.classList.add("panelTitle")
     title.innerHTML = item.name;
-
+    div.classList.add('clickable', "d-flex", "flex-row", "justify-content-between")
+    div.id = "sun"
     div.appendChild(title)
-
-    div.addEventListener('click', () => showInfoPropertyPanel(planet))
+    div.appendChild(btn)
+    div.addEventListener('click', (e) => showInfoPropertyPanel(planet, e))
     htmlPanel.appendChild(div)
 
 }
 
 
-function showInfoPropertyPanel(planet) {
+function addPlanetToSun() {
 
+    let earthInfo = { x: canvas.width / 2, y: canvas.height / 2, radius: 50, color: "blue", distance: 500, angle: 20, speed: 10 }
+    let earth = new Planet(earthInfo);
+    sun.addPlanet(earth)
+    addToParent(document.getElementById("sun"), earth, { ...earthInfo, name: "planeta", id: window.crypto.randomUUID });
+}
+
+
+function addToParent(element, planet, info) {
+
+    const div = document.createElement("div");
+    const title = document.createElement("h4");
+
+    title.innerHTML = info.name
+
+
+}
+
+function showInfoPropertyPanel(planet, e) {
+    e.target.classList.toggle("active")
     clearPorpertyPanel()
     const div = document.createElement('div')
     div.classList.add("d-flex", "flex-column")

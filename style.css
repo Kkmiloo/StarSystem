@@ -8,19 +8,40 @@
 }
 
 
-body {
-    background-color: rgb(0, 0, 0, 0.4) !important;
-}
-
-.w-13 {
-
-    width: 294px;
-}
-
-.w-74 {
-    width: 74%;
-}
+body {}
 
 .grabbing {
     cursor: grabbing;
+}
+
+.clickable:hover {
+    border: 1px solid rgb(24, 31, 255);
+    cursor: pointer;
+}
+
+.active {
+    border: 0px;
+    background-color: #59d8e4b5;
+}
+
+#propertyPanel h4 {
+
+    margin-top: 12px;
+    margin-left: 15px;
+}
+
+.panelTitle {
+    height: 100%;
+}
+
+.canvas-container {
+
+    width: 70%;
+    overflow: hidden;
+}
+
+#canvas1 {
+
+    width: 100%;
+    height: 100%;
 }

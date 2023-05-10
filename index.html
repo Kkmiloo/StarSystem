@@ -16,7 +16,7 @@
   </head>
   <body class="d-flex">
     <aside id="panel" class="d-flex flex-column w-13 p-3 min-vh-100">
-      <h1>Panel</h1>
+      <h1 id="panelTitle">Panel</h1>
       <!--       <button type="button" id="addSun" class="btn btn-primary w-25">
         añadir sol
       </button>
@@ -31,10 +31,13 @@
 
       <button id="addSun" class="btn btn-primary">add sun</button>
     </aside>
-    <main class="canvas-container w-74">
+    <main class="canvas-container">
       <canvas id="canvas1" class=""></canvas>
     </main>
-    <aside id="propertyPanel" class="w-13"></aside>
+    <aside id="propertyPanel" class="w-13">
+      <h4>Properties</h4>
+      <div id="properties"></div>
+    </aside>
 
     <script src="./app.js" type="module"></script>
     <script
