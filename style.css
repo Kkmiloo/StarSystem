@@ -1,0 +1,26 @@
+#canvas1 {
+
+    height: 100%;
+    width: 100%;
+    border: 2px solid black;
+    background-color: black;
+
+}
+
+
+body {
+    background-color: rgb(0, 0, 0, 0.4) !important;
+}
+
+.w-13 {
+
+    width: 294px;
+}
+
+.w-74 {
+    width: 74%;
+}
+
+.grabbing {
+    cursor: grabbing;
+}
